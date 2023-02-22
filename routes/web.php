@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[SiswaController::class,'index']);
 
 Route::post('/siswa',[SiswaController::class,'tambahSiswa']);
+Route::delete('/siswa/{id}',[SiswaController::class,'deleteSiswa']);
+
 

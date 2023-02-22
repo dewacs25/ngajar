@@ -9,7 +9,7 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'tb_siswa';
-
+    protected $primaryKey = 'id_siswa';
     protected $fillable = [
         'nis',
         'nama',

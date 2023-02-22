@@ -49,12 +49,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($siswas as $i=>$row)
+                            
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row">{{ ++$i }}</th>
+                            <td>{{ $row->nis }}</td>
+                            <td>{{ $row->nama }}</td>
+                            <td>
+                                <form action="/siswa/{{ $row->id_siswa }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
+                        @endforeach
 
                     </tbody>
                 </table>
