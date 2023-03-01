@@ -39,6 +39,12 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 <table class="table table-dark">
                     <thead>
                         <tr>
@@ -55,12 +61,16 @@
                             <th scope="row">{{ ++$i }}</th>
                             <td>{{ $row->nis }}</td>
                             <td>{{ $row->nama }}</td>
+                            <td>{{ $row->created_at->format('Y M d') }}</td>
                             <td>
                                 <form action="/siswa/{{ $row->id_siswa }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger badge">Delete</button>
                                 </form>
+                                <a href="/form/edit/{{ $row->id_siswa }}" class="btn btn-warning badge">
+                                    Edit
+                                </a>
                             </td>
                         </tr>
                         @endforeach

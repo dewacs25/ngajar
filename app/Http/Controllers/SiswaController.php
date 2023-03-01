@@ -31,7 +31,7 @@ class SiswaController extends Controller
         ]);
 
         if ($tambah) {
-            return redirect('/');
+            return redirect('/')->with(session()->flash('success','Data Berhasil DI Tambahkan'));
         }
     }
 
@@ -40,5 +40,28 @@ class SiswaController extends Controller
         $cek = Siswa::where('id_siswa',$id)->get()->first();
         $cek->delete();
         return redirect('/'); 
+    }
+
+    public function FormEdit($id)
+    {
+        $edit = Siswa::where('id_siswa',$id)->get()->first();
+        return view('edit',[
+            'dataSiswa'=>$edit
+        ]);
+    }
+
+    public function editSiswa(Request $req, $id)
+    {
+        $cek = Siswa::where('id_siswa',$id)->update([
+            'nis'=>$req->nis,
+            'nama'=>$req->nama,
+        ]);
+
+        if ($cek) {
+            return redirect('/')->with(session()->flash('success','Data Berhasil Di Edit'));
+        }else{
+            return redirect('/')->with(session()->flash('danger','Data Gagal'));
+        }
+        
     }
 }

@@ -18,4 +18,9 @@ Route::get('/',[SiswaController::class,'index']);
 Route::post('/siswa',[SiswaController::class,'tambahSiswa']);
 Route::delete('/siswa/{id}',[SiswaController::class,'deleteSiswa']);
 
+Route::get('/form/edit/{id}',[SiswaController::class,'FormEdit']);
+
+Route::put('/form/edit/{id}',[SiswaController::class,'editSiswa']);
+
+
 
